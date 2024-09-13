@@ -1,6 +1,7 @@
 package com.prenotazioni.gestione_prenotazioni.service;
 
 import com.prenotazioni.gestione_prenotazioni.entity.Prenotazione;
+import com.prenotazioni.gestione_prenotazioni.exception.PrenotazioneException;
 import com.prenotazioni.gestione_prenotazioni.repository.PrenotazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class PrenotazioneService {
                 .findByDipendenteIdAndDataRichiesta(prenotazione.getDipendente().getId(), prenotazione.getDataRichiesta());
 
         if (esistente.isPresent()) {
-            throw new IllegalArgumentException("Esiste già una prenotazione per questo dipendente nella data selezionata.");
+            throw new PrenotazioneException("Esiste già una prenotazione per questo dipendente nella data selezionata.");
         }
 
         return prenotazioneRepository.save(prenotazione);
