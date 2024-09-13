@@ -16,7 +16,7 @@ public class Dipendente {
 
     @Lob
     private byte[] immagineProfilo;
-    
+
     public Long getId() {
         return id;
     }
